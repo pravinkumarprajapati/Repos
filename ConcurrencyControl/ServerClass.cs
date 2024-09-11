@@ -10,6 +10,7 @@ namespace ConcurrencyControl
     {
         public void Display()
         {
+            Thread.Sleep(5000);
             Console.WriteLine($"ServerClass.Display");
         }
     }
