@@ -1,8 +1,9 @@
 ﻿using ConcurrencyControl;
+using System.Threading.Tasks;
 
 public class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
         ThreadHelperClass serverClass = new();
         var result = string.Empty ;
@@ -24,7 +25,8 @@ public class Program
                 Console.WriteLine($"Thread has completed. {result}");
             }
         }
-
+        string result1 =   serverClass.DisplayAsync().Result;
+        Console.WriteLine("Async method completed.");
         Console.ReadLine();
-    }
+    }   
 }
