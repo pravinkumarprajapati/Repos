@@ -1,11 +1,30 @@
-﻿
-using ConcurrencyControl;
+﻿using ConcurrencyControl;
 
-ServerClass serverClass = new ServerClass();
+public class Program
+{
+    static void Main(string[] args)
+    {
+        ThreadHelperClass serverClass = new();
+        var result = string.Empty ;
+        Thread thread1 = new Thread(new ThreadStart(() =>
+                {
+                    Console.WriteLine("Thread started.");
+                    result= serverClass.Display();
+                    Console.WriteLine("Thread completed.");
+                }
+        ));
+        thread1.Start();
+        bool IsThreadCompleted = false;
+        // Wait for the thread to complete  
+        while (!IsThreadCompleted)
+        {
+            if (thread1.ThreadState == ThreadState.Stopped)
+            {
+                IsThreadCompleted = true;
+                Console.WriteLine($"Thread has completed. {result}");
+            }
+        }
 
-Thread thread1 = new Thread(new ThreadStart(serverClass.Display));
-thread1.Start();
-ThreadState state = thread1.ThreadState;
-Console.WriteLine($"Thread state : {state}");
-
-Console.WriteLine("Hello, World!");
+        Console.ReadLine();
+    }
+}

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ConcurrencyControl
 {
-    public class ServerClass
+    public class ThreadHelperClass
     {
-        public void Display()
+        public string Display()
         {
-            Thread.Sleep(5000);
-            Console.WriteLine($"ServerClass.Display");
+            Thread.Sleep(1000);
+            return $"Message from ThreadHelperClass.Display";
         }
     }
 }
